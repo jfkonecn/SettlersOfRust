@@ -12,14 +12,35 @@ pub struct Hand {
     total_roads: i32,
 }
 
-pub struct PlayerName(String);
+impl Hand {
+    pub fn new() -> Self {
+        Self {
+            total_settlements: 5,
+            total_cities: 4,
+            total_roads: 15,
+        }
+    }
+}
 
-pub type PlayerBlueprint = (PlayerName, PlayerColor);
+pub struct PlayerBlueprint {
+    pub name: String,
+    pub color: PlayerColor,
+}
 
 pub struct Player {
     name: String,
     color: PlayerColor,
     hand: Hand,
+}
+
+impl Player {
+    pub fn new(name: String, color: PlayerColor, hand: Hand) -> Self {
+        Self {
+            name,
+            color,
+            hand: Hand::new(),
+        }
+    }
 }
 
 pub enum ResourceCard {
@@ -134,7 +155,6 @@ pub struct Game {
     pub current_color: PlayerColor,
 }
 
-#[derive(PartialEq)]
 pub enum Move {
     PlaceSettlement,
     PlaceRoad,
@@ -142,7 +162,7 @@ pub enum Move {
 }
 
 pub enum GameError {
-    NameExceededCharacterLimit(i32, PlayerBlueprint),
+    NameExceededCharacterLimit(usize, PlayerBlueprint),
     DuplicatedColor(PlayerColor, Vec<PlayerBlueprint>),
     NotEnoughPlayers,
     InvalidMove(Move),
