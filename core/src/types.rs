@@ -70,11 +70,13 @@ pub struct HarborToken {
     resource_to_give: Option<ResourceCard>,
 }
 
+#[derive(Clone)]
 pub enum CircularTokenColor {
     Black,
     Red,
 }
 
+#[derive(Clone)]
 pub struct CircularToken {
     value: i32,
     color: CircularTokenColor,
@@ -99,8 +101,15 @@ pub enum Robber {
 }
 
 pub enum TerrainTile {
-    Productive(Terrain, CircularToken, Option<Robber>),
-    Barren(Terrain, Option<Robber>),
+    Productive {
+        terrain: Terrain,
+        circularToken: CircularToken,
+        robber_opt: Option<Robber>,
+    },
+    Barren {
+        terrain: Terrain,
+        robber_opt: Option<Robber>,
+    },
 }
 
 pub enum DevelopmentCard {
@@ -168,4 +177,5 @@ pub enum GameError {
     InvalidMove(Move),
     BoardItemNotFound(i32),
     ItemIsNotACorner(i32),
+    FailedToShuffleTiles(String),
 }
