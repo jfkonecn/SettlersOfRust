@@ -1,139 +1,193 @@
 // https://catan.fandom.com/wiki/Catan
 use crate::types::*;
 
-pub static sea_frames: Vec<SeaFrame> = vec![SeaFrame::SingleHarbor; 3]
-    .into_iter()
-    .chain(vec![SeaFrame::TwoHarbor; 3].into_iter())
-    .collect();
+pub static SEA_FRAMES: Vec<SeaFrame> = vec![
+    SeaFrame::SingleHarbor,
+    SeaFrame::SingleHarbor,
+    SeaFrame::SingleHarbor,
+    SeaFrame::TwoHarbor,
+    SeaFrame::TwoHarbor,
+    SeaFrame::TwoHarbor,
+];
 
-pub static harbor_tokens: Vec<HarborToken> = vec![
-    ResourceCard::Lumber,
-    ResourceCard::Wool,
-    ResourceCard::Grain,
-    ResourceCard::Brick,
-    ResourceCard::Ore,
-]
-.into_iter()
-.map(|x| HarborToken {
-    give_amount: 2,
-    resource_to_give: Some(x),
-})
-.chain(
-    vec![
-        HarborToken {
-            give_amount: 3,
-            resource_to_give: None,
-        };
-        4
-    ]
-    .into_iter(),
-)
-.collect();
+pub static HARBOR_TOKENS: Vec<HarborToken> = vec![
+    HarborToken {
+        give_amount: 2,
+        resource_to_give: Some(ResourceCard::Lumber),
+    },
+    HarborToken {
+        give_amount: 2,
+        resource_to_give: Some(ResourceCard::Wool),
+    },
+    HarborToken {
+        give_amount: 2,
+        resource_to_give: Some(ResourceCard::Grain),
+    },
+    HarborToken {
+        give_amount: 2,
+        resource_to_give: Some(ResourceCard::Brick),
+    },
+    HarborToken {
+        give_amount: 2,
+        resource_to_give: Some(ResourceCard::Ore),
+    },
+    HarborToken {
+        give_amount: 3,
+        resource_to_give: None,
+    },
+    HarborToken {
+        give_amount: 3,
+        resource_to_give: None,
+    },
+    HarborToken {
+        give_amount: 3,
+        resource_to_give: None,
+    },
+    HarborToken {
+        give_amount: 3,
+        resource_to_give: None,
+    },
+];
 
-pub static terrain_hexes: Vec<TerrainHex> = vec![
-    Forest, Forest, Forest, Forest, Pasture, Pasture, Pasture, Pasture, Fields, Fields, Fields,
-    Fields, Hills, Hills, Hills, Mountains, Mountains, Mountains, Desert,
-]
-.into_iter()
-.collect();
+pub static TERRAIN_HEXES: Vec<Terrain> = vec![
+    Terrain::Forest,
+    Terrain::Forest,
+    Terrain::Forest,
+    Terrain::Forest,
+    Terrain::Pasture,
+    Terrain::Pasture,
+    Terrain::Pasture,
+    Terrain::Pasture,
+    Terrain::Fields,
+    Terrain::Fields,
+    Terrain::Fields,
+    Terrain::Fields,
+    Terrain::Hills,
+    Terrain::Hills,
+    Terrain::Hills,
+    Terrain::Mountains,
+    Terrain::Mountains,
+    Terrain::Mountains,
+    Terrain::Desert,
+];
 
-pub static number_tokens: Vec<NumberToken> = vec![
-    NumberToken {
+pub static NUMBER_TOKENS: Vec<CircularToken> = vec![
+    CircularToken {
         letter: 'B',
         value: 2,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'C',
         value: 6,
-        color: Red,
+        color: CircularTokenColor::Red,
     },
-    NumberToken {
+    CircularToken {
         letter: 'P',
         value: 6,
-        color: Red,
+        color: CircularTokenColor::Red,
     },
-    NumberToken {
+    CircularToken {
         letter: 'E',
         value: 8,
-        color: Red,
+        color: CircularTokenColor::Red,
     },
-    NumberToken {
+    CircularToken {
         letter: 'K',
         value: 8,
-        color: Red,
+        color: CircularTokenColor::Red,
     },
-    NumberToken {
+    CircularToken {
         letter: 'H',
         value: 12,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'D',
         value: 3,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'Q',
         value: 3,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'J',
         value: 4,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'N',
         value: 4,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'A',
         value: 5,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'O',
         value: 5,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'G',
         value: 9,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'M',
         value: 9,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'L',
         value: 10,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'F',
         value: 10,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'I',
         value: 11,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-    NumberToken {
+    CircularToken {
         letter: 'R',
         value: 11,
-        color: Black,
+        color: CircularTokenColor::Black,
     },
-]
-.into_iter()
-.collect();
+];
 
-pub static development_cards: Vec<DevelopmentCard> = vec![KnightCard; 14]
-    .into_iter()
-    .chain(vec![ProgressCard; 6].into_iter())
-    .chain(vec![VictoryPointCard; 5].into_iter())
-    .collect();
+pub static DEVELOPMENT_CARDS: Vec<DevelopmentCard> = vec![
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::KnightCard,
+    DevelopmentCard::ProgressCard,
+    DevelopmentCard::ProgressCard,
+    DevelopmentCard::ProgressCard,
+    DevelopmentCard::ProgressCard,
+    DevelopmentCard::ProgressCard,
+    DevelopmentCard::ProgressCard,
+    DevelopmentCard::VictoryPointCard,
+    DevelopmentCard::VictoryPointCard,
+    DevelopmentCard::VictoryPointCard,
+    DevelopmentCard::VictoryPointCard,
+    DevelopmentCard::VictoryPointCard,
+];
