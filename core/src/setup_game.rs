@@ -14,7 +14,7 @@ fn validate_blueprint(
     let character_limit = 50;
     let too_many_characters = player_blueprints
         .iter()
-        .filter(|(Name(name), _)| name.len() > character_limit)
+        .filter(|(x, _)| x.name.len() > character_limit)
         .map(|x| GameError::NameExceededCharacterLimit(character_limit, x.clone()))
         .collect::<Vec<_>>();
 

@@ -1,3 +1,4 @@
+#[derive(Clone, PartialEq, Eq)]
 pub enum PlayerColor {
     Red,
     White,
@@ -110,9 +111,9 @@ pub enum GameBoardItem {
 }
 
 pub struct GameBoardPoint {
-    x: f64,
-    y: f64,
-    item: (i32, GameBoardItem),
+    pub x: f64,
+    pub y: f64,
+    pub item: (i32, GameBoardItem),
 }
 
 pub struct AvailableResourceCards {
@@ -124,15 +125,16 @@ pub struct AvailableResourceCards {
 }
 
 pub struct Game {
-    game_board: Vec<GameBoardPoint>,
-    players: Vec<Player>,
-    available_resource_cards: AvailableResourceCards,
-    development_cards: Vec<DevelopmentCard>,
-    round: i32,
-    starting_color: PlayerColor,
-    current_color: PlayerColor,
+    pub game_board: Vec<GameBoardPoint>,
+    pub players: Vec<Player>,
+    pub available_resource_cards: AvailableResourceCards,
+    pub development_cards: Vec<DevelopmentCard>,
+    pub round: i32,
+    pub starting_color: PlayerColor,
+    pub current_color: PlayerColor,
 }
 
+#[derive(PartialEq)]
 pub enum Move {
     PlaceSettlement,
     PlaceRoad,
